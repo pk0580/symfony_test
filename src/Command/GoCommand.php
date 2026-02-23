@@ -2,22 +2,12 @@
 
 namespace App\Command;
 
-use App\ApiResponseBuilder\PostApiResponseBuilder;
-use App\DTO\Input\Post\PostStoreInputDTO;
-use App\DTOValidator\PostDTOValidator;
-use App\Entity\Post;
-use App\Entity\User;
-use App\Event\Post\PostCreatedEvent;
 use App\Message\SomeMessage;
-use App\Service\PostService;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Messenger\MessageBusInterface;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 #[AsCommand(
     name: 'go',

@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\ApiResponseBuilder\PostApiResponseBuilder;
 use App\DTO\Input\Post\PostStoreInputDTO;
-use App\DTOValidator\PostDTOValidator;
+use App\DTOValidator\Post\PostDTOValidator;
 use App\Entity\Post;
 use App\Factory\PostFactory;
 use App\Service\PostService;

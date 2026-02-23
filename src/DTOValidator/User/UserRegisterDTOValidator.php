@@ -1,20 +1,18 @@
 <?php
 
-namespace App\DTOValidator;
+namespace App\DTOValidator\User;
 
-use App\DTO\Input\Post\PostStoreInputDTO;
-use App\DTO\Input\Post\PostUpdateInputDTO;
+use App\DTO\Input\User\UserRegisterDTO;
 use App\Exception\ValidateException;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
-class PostDTOValidator
+class UserRegisterDTOValidator
 {
-    public function __construct(private ValidatorInterface $validator)
-    {}
+    public function __construct(private ValidatorInterface $validator) {}
 
-    public function validate(PostStoreInputDTO|PostUpdateInputDTO $postStoreInputDTO)
+    public function validate(UserRegisterDTO $userRegisterDTO): void
     {
-        $errors = $this->validator->validate($postStoreInputDTO);
+        $errors = $this->validator->validate($userRegisterDTO);
 
         if (count($errors)) {
             $messages = [];

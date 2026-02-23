@@ -4,23 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dd01b4e4-fafd-44f2-b3af-ce2f66c05558" name="Changes" comment="Тестовое приложение по урокам 1">
-      <change afterPath="$PROJECT_DIR$/src/Event/Post/PostCreatedEvent.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Listener/Entity/PostListener.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Listener/Event/Post/PostCreatedListener.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+    <list default="true" id="dd01b4e4-fafd-44f2-b3af-ce2f66c05558" name="Changes" comment="Тестовое приложение по урокам 2">
+      <change afterPath="$PROJECT_DIR$/src/DTO/Input/User/UserRegisterDTO.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/DTOValidator/User/UserRegisterDTOValidator.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Factory/UserFactory.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Service/UserService.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/bundles.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/messenger.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/messenger.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/reference.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/reference.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/routes.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Command/GoCommand.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Command/GoCommand.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/AuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/AuthController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/PostController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/PostController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Post.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Post.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DTOValidator/PostDTOValidator.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DTOValidator/Post/PostDTOValidator.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/UserRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/UserRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Service/PostService.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/PostService.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -181,6 +177,9 @@
       <path value="$PROJECT_DIR$/vendor/monolog/monolog" />
     </include_path>
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
 }</component>
@@ -231,7 +230,7 @@
       <updated>1771405095558</updated>
       <workItem from="1771405097057" duration="67579000" />
       <workItem from="1771823291160" duration="8185000" />
-      <workItem from="1771839123560" duration="400000" />
+      <workItem from="1771839123560" duration="5226000" />
     </task>
     <task id="LOCAL-00001" summary="Этап 2">
       <option name="closed" value="true" />
@@ -265,7 +264,15 @@
       <option name="project" value="LOCAL" />
       <updated>1771647250932</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Тестовое приложение по урокам 2">
+      <option name="closed" value="true" />
+      <created>1771839828528</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1771839828528</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -274,6 +281,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Этап 2" />
     <MESSAGE value="Тестовое приложение по урокам 1" />
-    <option name="LAST_COMMIT_MESSAGE" value="Тестовое приложение по урокам 1" />
+    <MESSAGE value="Тестовое приложение по урокам 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="Тестовое приложение по урокам 2" />
   </component>
 </project>

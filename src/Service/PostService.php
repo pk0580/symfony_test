@@ -13,10 +13,7 @@ class PostService
     public function __construct(
         private PostRepository $postRepository,
         private PostFactory $postFactory
-    )
-    {
-
-    }
+    ) {}
 
     public function index(): array
     {
