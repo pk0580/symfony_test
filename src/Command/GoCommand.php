@@ -5,13 +5,19 @@ namespace App\Command;
 use App\ApiResponseBuilder\PostApiResponseBuilder;
 use App\DTO\Input\Post\PostStoreInputDTO;
 use App\DTOValidator\PostDTOValidator;
+use App\Entity\Post;
+use App\Entity\User;
+use App\Event\Post\PostCreatedEvent;
+use App\Message\SomeMessage;
 use App\Service\PostService;
-use App\Validator\PostValidator;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Symfony\Component\Messenger\MessageBusInterface;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 #[AsCommand(
     name: 'go',
@@ -20,10 +26,14 @@ use Symfony\Component\Console\Output\OutputInterface;
 class GoCommand extends Command
 {
     public function __construct(
-        private PostService $postService,
-        private PostDTOValidator $validator,
-        private PostApiResponseBuilder $postResponseBuilder,
-        private PostStoreInputDTO $postStoreInputDTO
+//        private PostService $postService,
+//        private PostDTOValidator $validator,
+//        private PostApiResponseBuilder $postResponseBuilder,
+//        private PostStoreInputDTO $postStoreInputDTO,
+//        private EntityManagerInterface $entityManager,
+//        private UserPasswordHasherInterface $passwordHasher,
+//        private EventDispatcherInterface $eventDispatcher,
+        private MessageBusInterface $messageBus
     )
     {
         parent::__construct();
@@ -31,25 +41,47 @@ class GoCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $data = [
-            'title'       => 'Test New 2',
-            'description' => 'Description New 2',
-            'content'     => 'Content New 2',
-            'published_at' => '2020-02-01',
-            'status'      => 2,
-            'category_id' => 100,
-        ];
+        $this->messageBus->dispatch(new SomeMessage('Hello World!'));
 
-//        $posts = $this->postRepository->findAll();
+//        $post = $this->entityManager->getRepository(Post::class)->find(1);
+//        $post->setTitle('New Title 2');
+//        $this->entityManager->persist($post);
+//        $this->entityManager->flush();
+//
+//        $this->eventDispatcher->dispatch(new PostCreatedEvent($post), PostCreatedEvent::NAME);
 
-        $postInputDTO = $this->postStoreInputDTO->makePostStoreInputDTO($data);
+//        $data = [
+//            'email' => 'user@mail.ru',
+//            'password' => 'password',
+//        ];
+//
+//        $user = new User();
+//
+//        $user->setEmail($data['email']);
+//        $user->setPassword($this->passwordHasher->hashPassword($user, $data['password']));
+//
+//        $this->entityManager->persist($user);
+//        $this->entityManager->flush();
 
-        $errors = $this->validator->validate($postInputDTO);
-
-        $post = $this->postService->store($postInputDTO);
-
-        $res = $this->postResponseBuilder->storePostResponse($post);
-        dump($res);
+//        $data = [
+//            'title'       => 'Test New 2',
+//            'description' => 'Description New 2',
+//            'content'     => 'Content New 2',
+//            'published_at' => '2020-02-01',
+//            'status'      => 2,
+//            'category_id' => 100,
+//        ];
+//
+////        $posts = $this->postRepository->findAll();
+//
+//        $postInputDTO = $this->postStoreInputDTO->makePostStoreInputDTO($data);
+//
+//        $errors = $this->validator->validate($postInputDTO);
+//
+//        $post = $this->postService->store($postInputDTO);
+//
+//        $res = $this->postResponseBuilder->storePostResponse($post);
+//        dump($res);
 
         return Command::SUCCESS;
     }

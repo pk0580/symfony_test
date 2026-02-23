@@ -10,7 +10,9 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Attribute\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
+//#[ORM\EntityListeners(['App\Listener\Entity\PostListener'])]
 #[ORM\Entity(repositoryClass: PostRepository::class)]
+//#[ORM\HasLifecycleCallbacks]
 class Post
 {
     #[ORM\Id]
@@ -154,4 +156,10 @@ class Post
 
         return $this;
     }
+
+//    #[ORM\PreUpdate]
+//    public function onPreUpdate(): void
+//    {
+//        dd(111111);
+//    }
 }
