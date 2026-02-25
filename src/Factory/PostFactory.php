@@ -41,35 +41,6 @@ class PostFactory
         return $post;
     }
 
-    public function makePostStoreInputDTO(array $data): PostStoreInputDTO
-    {
-        $post = new PostStoreInputDTO();
-
-        $post->title = $data['title'];
-        $post->description = $data['description'];
-        $post->content = $data['content'];
-        $post->publishedAt = $data['published_at'];
-        $post->status = $data['status'];
-        $post->categoryId = $data['category_id'];
-
-        return $post;
-    }
-
-    public function makePostUpdateInputDTO(array $data): PostUpdateInputDTO
-    {
-        $post = new PostUpdateInputDTO();
-
-        $post->title = $data['title'];
-        $post->description = $data['description'];
-        $post->content = $data['content'];
-        $post->publishedAt = new \DateTimeImmutable($data['published_at'] ?? null);
-        $post->status = $data['status'];
-        $post->categoryId = $data['category_id'];
-
-        return $post;
-    }
-
-
     public function makePostOutputDTO(Post $post): PostOutputDTO
     {
         $dto = new PostOutputDTO();
@@ -89,5 +60,4 @@ class PostFactory
     {
         return array_map(fn(Post $post) => $this->makePostOutputDTO($post), $posts);
     }
-
 }

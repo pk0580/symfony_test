@@ -4,7 +4,8 @@ namespace App\Controller;
 
 use App\ApiResponseBuilder\PostApiResponseBuilder;
 use App\DTO\Input\Post\PostStoreInputDTO;
-use App\DTOValidator\Post\PostDTOValidator;
+use App\DTO\Input\Post\PostUpdateInputDTO;
+use Symfony\Component\HttpKernel\Attribute\MapRequestPayload;
 use App\Entity\Post;
 use App\Factory\PostFactory;
 use App\Service\PostService;
@@ -18,9 +19,6 @@ final class PostController extends AbstractController
     public function __construct(
         private readonly PostService            $postService,
         private readonly PostApiResponseBuilder $postApiResponseBuilder,
-        private readonly PostDTOValidator       $postDTOValidator,
-        private readonly PostStoreInputDTO      $postStoreInputDTO,
-        private readonly PostFactory            $postFactory
     ) {}
 
     #[Route('/api/post', name: 'post_index', methods: ['GET'])]
@@ -42,12 +40,13 @@ final class PostController extends AbstractController
     }
 
     #[Route('/api/post', name: 'post_store', methods: ['POST'])]
-    public function store(Request $request): JsonResponse
+    public function store(#[MapRequestPayload] PostStoreInputDTO $postInputDTO): JsonResponse
     {
-        $data = json_decode($request->getContent(), true);
-        $postInputDTO = $this->postStoreInputDTO->makePostStoreInputDTO($data);
-
-        $this->postDTOValidator->validate($postInputDTO);
+//        #[MapRequestPayload] исполняет следующий код:
+//        $data = json_decode($request->getContent(), true);
+//        $postInputDTO = $this->postStoreInputDTO->makePostStoreInputDTO($data);
+//
+//        $this->postDTOValidator->validate($postInputDTO);
 
         $post = $this->postService->store($postInputDTO);
 
@@ -55,13 +54,8 @@ final class PostController extends AbstractController
     }
 
     #[Route('/api/post/{post}', name: 'post_update', methods: ['PATCH'])]
-    public function update(Post $post, Request $request): JsonResponse
+    public function update(Post $post, #[MapRequestPayload] PostUpdateInputDTO $postInputDTO): JsonResponse
     {
-        $data = json_decode($request->getContent(), true);
-        $postInputDTO = $this->postFactory->makePostUpdateInputDTO($data);
-
-        $this->postDTOValidator->validate($postInputDTO);
-
         $post = $this->postService->update($post, $postInputDTO);
 
         return $this->postApiResponseBuilder->updatePostResponse($post);

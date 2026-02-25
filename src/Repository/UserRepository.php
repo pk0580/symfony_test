@@ -15,23 +15,27 @@ use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
  */
 class UserRepository extends ServiceEntityRepository implements PasswordUpgraderInterface
 {
-    public function __construct(
-        private readonly EntityManagerInterface $entityManager,
-        ManagerRegistry                         $registry
-    )
+    public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, User::class);
     }
 
-    public function store(User $user, bool $isFlash = true): User
+    public function save(User $user, bool $flush = true): void
     {
-        $this->entityManager->persist($user);
+        $this->getEntityManager()->persist($user);
 
-        if ($isFlash) {
-            $this->entityManager->flush();
+        if ($flush) {
+            $this->getEntityManager()->flush();
         }
+    }
 
-        return $user;
+    public function remove(User $user, bool $flush = true): void
+    {
+        $this->getEntityManager()->remove($user);
+
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
     }
 
     /**
@@ -46,15 +50,6 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $user->setPassword($newHashedPassword);
         $this->getEntityManager()->persist($user);
         $this->getEntityManager()->flush();
-    }
-
-    public function destroy(User $user, bool $isFlash = true): void
-    {
-        $this->entityManager->remove($user);
-
-        if ($isFlash) {
-            $this->entityManager->flush();
-        }
     }
 
     //    /**

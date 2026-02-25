@@ -20,10 +20,10 @@ class UserService
         return $this->userRepository->findAll();
     }
 
-    public function store(UserRegisterDTO $dto): user
+    public function store(UserRegisterDTO $dto): User
     {
         $user = $this->userFactory->makeUser($dto);
-        $this->userRepository->store($user, $dto->password);
+        $this->userRepository->save($user);
 
         return $user;
     }
@@ -38,6 +38,6 @@ class UserService
 
     public function destroy(User $user): void
     {
-        $this->userRepository->destroy($user);
+        $this->userRepository->remove($user);
     }
 }

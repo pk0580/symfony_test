@@ -17,34 +17,21 @@ class PostRepository extends ServiceEntityRepository
         parent::__construct($registry, Post::class);
     }
 
-    public function store(Post $post, bool $isFlash = true): Post
+    public function save(Post $post, bool $flush = true): void
     {
-        $this->entityManager->persist($post);
+        $this->getEntityManager()->persist($post);
 
-        if ($isFlash) {
-            $this->entityManager->flush();
+        if ($flush) {
+            $this->getEntityManager()->flush();
         }
-
-        return $post;
     }
 
-    public function update(Post $post, bool $isFlash = true): Post
+    public function remove(Post $post, bool $flush = true): void
     {
-        $this->entityManager->persist($post);
+        $this->getEntityManager()->remove($post);
 
-        if ($isFlash) {
-            $this->entityManager->flush();
-        }
-
-        return $post;
-    }
-
-    public function destroy(Post $post, bool $isFlash = true): void
-    {
-        $this->entityManager->remove($post);
-
-        if ($isFlash) {
-            $this->entityManager->flush();
+        if ($flush) {
+            $this->getEntityManager()->flush();
         }
     }
 }

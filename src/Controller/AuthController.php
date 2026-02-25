@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\DTO\Input\User\UserRegisterDTO;
-use App\DTOValidator\User\UserRegisterDTOValidator;
+use Symfony\Component\HttpKernel\Attribute\MapRequestPayload;
 use App\Service\UserService;
 use Doctrine\ORM\EntityManagerInterface;
 use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
@@ -21,20 +21,10 @@ final class AuthController extends AbstractController
 
     #[Route('/api/auth/register', name: 'auth_register', methods: ['POST'])]
     public function register(
-        Request $request,
-        EntityManagerInterface $entityManager,
-        UserRegisterDTO $userRegisterDTO,
-        UserRegisterDTOValidator $dtoValidator,
+        #[MapRequestPayload] UserRegisterDTO $dto,
     ): JsonResponse
     {
-        $data = json_decode($request->getContent(), true);
-
-        $dto = $userRegisterDTO->makeDTO($data);
-        $dtoValidator->validate($dto);
         $user = $this->userService->store($dto);
-
-        $entityManager->persist($user);
-        $entityManager->flush();
 
         return $this->json([
             'user' => $user,

@@ -23,7 +23,7 @@ class PostService
     public function store(PostStoreInputDTO $postStoreInputDTO): Post
     {
         $post = $this->postFactory->makePost($postStoreInputDTO);
-        $this->postRepository->store($post);
+        $this->postRepository->save($post);
 
         return $post;
     }
@@ -31,13 +31,13 @@ class PostService
     public function update(Post $post, PostUpdateInputDTO $postUpdateInputDTO): Post
     {
         $post = $this->postFactory->editPost($post, $postUpdateInputDTO);
-        $this->postRepository->store($post);
+        $this->postRepository->save($post);
 
         return $post;
     }
 
     public function destroy(Post $post): void
     {
-        $this->postRepository->destroy($post);
+        $this->postRepository->remove($post);
     }
 }

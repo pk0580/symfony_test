@@ -13,7 +13,7 @@ class UserFactory
     public function makeUser(UserRegisterDTO $dto): User
     {
         $user = new User();
-        $user->setEmail($dto->email);;
+        $user->setEmail($dto->email);
         $user->setPassword($this->passwordHasher->hashPassword($user, $dto->password));
 
         return $user;
